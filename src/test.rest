@@ -1,0 +1,147 @@
+### 
+        ### Start Car
+###
+
+POST http://localhost:5000/regtCars/Ncr
+content-type: application/json
+
+{
+    "platNo": "3AA73596",
+    "driverName": "HTTR EFYXZ",
+     "model": "Yaris",
+     "capacity": 4,
+     "dirverPhone": "251975649622"
+}
+
+###
+
+GET  http://localhost:5000/regtCars
+
+###
+
+GET  http://localhost:5000/regtCars/byId/63dcd375c872072be16ab8aa
+
+###
+
+GET  http://localhost:5000/regtCars/plats/3AA80051
+
+
+###
+
+Put http://localhost:5000/regtCars/updateCar/64ed912fbd16e6c7ec6dc498
+content-type: application/json
+
+{
+    "platNo": "3AAB12587",
+    "driverName": "HTTR EFYXZ",
+     "model": "Yaris",
+     "capacity": 4,
+     "dirverPhone": "251975649322",
+     "carStat": 1
+}
+
+###
+
+GET  http://localhost:5000/regtCars/dropdown
+
+
+### 
+        ### END Car
+        ### Start Reservation
+###
+
+POST http://localhost:5000/reservation/Nrs
+content-type: application/json
+
+{
+     "dts": "12-09-2023",
+    "requster": "KKyert YGbf",
+     "depmnt": "Media",
+     "frm": "New shop",
+     "_to": "Head office",
+     "tm_frm": "7:00",
+     "tm_to": "9:30",
+     "dsc": "Training"     
+}
+
+
+###
+
+GET  http://localhost:5000/reservation
+
+###
+
+GET  http://localhost:5000/reservation/byId/64f8293664fad0ea5b63fdb1
+
+###
+
+Put http://localhost:5000/reservation/update/64e2c1291dbc3e59ba6b5e7b
+content-type: application/json
+
+{
+    "dts": "18-08-2023",
+    "requster": "YIUY Uytr",
+     "depmnt": "Salse",
+     "frm": "Head Office",
+     "_to": "New Shop",
+     "dsc": "Promoting New Shop",
+     "reqStat": 1,
+     "vehicle": ["64de0700ef5a69b3ace726b9", "64de0710ef5a69b3ace726c9"]
+}
+
+### 
+        ### END Resvation
+        ### Start User
+###
+
+POST http://localhost:5000/users/sigUp
+content-type: application/json
+
+{
+    "firstName": "Lannister",
+    "lastName": "Cersei",
+    "departmnt": "Information Technology",
+    "email": "cerseilannister@gmail.com",
+    "userName": "Lannister34",
+    "passWord": "fhsehsgh346457", 
+    "userRole": 8
+}
+
+
+
+###
+
+GET  http://localhost:5000/users/all
+
+
+###
+
+GET  http://localhost:5000/users/logIn/tcerT1/hghyXxhbABc
+
+
+###
+
+POST http://localhost:5000/users/logIn
+content-type: application/json
+
+{
+    
+    "userName": "user1",
+    "passWord": "user1"
+    
+}
+
+###
+
+Put http://localhost:5000/users/update/64ef3a8c7f8729e2d4ec4e52
+content-type: application/json
+
+{
+    "firstName": "SBVMNDFB",
+    "lastName": "FTEBDgvnD",
+    "departmnt": "Security",
+    "email": "dgxdgdfsg@gmail.com",
+    "userName": "user1",
+    "passWord": "user1", 
+    "userRole": 1
+}

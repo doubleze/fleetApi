@@ -1,6 +1,4 @@
-import { IsArray, IsNotEmpty, IsNumber, IsObject, IsString, isString } from 'class-validator';
-import { ObjectId, Types } from 'mongoose';
-import { RgtrCar } from 'src/registor/schemas/registor.schema';
+import { IsArray, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class RsvDto {
   @IsString()
@@ -20,13 +18,15 @@ export class RsvDto {
   readonly _to: string;
   @IsString()
   @IsNotEmpty()
-  readonly dsc: string;
-  @IsNumber()
+  readonly tm_frm: string;
+  @IsString()
   @IsNotEmpty()
+  readonly tm_to: string;
+  @IsString()
+  @IsNotEmpty()
+  readonly dsc: string;
+  
   readonly reqStat: number;
-  @IsArray()
+  
   readonly vehicle: [string];
-
-  @IsArray()
-  readonly vehicles: RgtrCar;
 }

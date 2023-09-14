@@ -1,8 +1,9 @@
-import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, NotFoundException, Param, Post, Put } from '@nestjs/common';
 import { RgtrCar } from './schemas/registor.schema';
 import { RegCrsDto } from './dto/registorCar.dto';
 import { RegistorService } from './registor.service';
 import mongoose from 'mongoose';
+import { UpdtCrsDto } from './dto/updateCar.dto';
 
 @Controller('regtCars')
 export class RegistorController {
@@ -39,7 +40,7 @@ export class RegistorController {
     return this.registorService.findByPlat(plate);
   }
 
-  @Post('update/:_id')
+  @Put('updateCar/:_id')
   async updatCrInf(
     @Param('_id')
     _id: string,
@@ -49,18 +50,29 @@ export class RegistorController {
     return this.registorService.updatCrs(_id, rgCar);
   }
 
+  @Put('deleteCar/:_id')
+  async deleteCrInf(
+    @Param('_id')
+    _id: string,
+      ): Promise<RgtrCar> {
+    return this.registorService.deleteCrs(_id);
+  }
 
   
   @Get('dropdown')
   async getDropdownList(@Param('model') model: string): Promise<{ value: string; label: string; }[]> {
-    console.log("over here 1");
-    const crInf = await this.registorService.findAllCars();
+    // console.log("over here 1");
+    const crInf = await this.registorService.findActCars();
     const options = crInf.map((carS) => ({
-      value: carS.model,
+      value: carS.driverName,
       label: carS.platNo,
     }));
+    options.unshift({
+      value: "",
+      label: "-- select One --",
+    });
     return options;
   }
 
-  
+ 
 }

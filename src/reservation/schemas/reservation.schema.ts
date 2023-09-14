@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose from 'mongoose';
-import { RgtrCar, RgtrCarSchema } from 'src/registor/schemas/registor.schema';
 
 @Schema({
   timestamps: true,
@@ -22,16 +21,19 @@ export class Rservations {
   _to: string;
 
   @Prop()
-  dsc: string;
+  tm_frm: string;
 
   @Prop()
-  reqStat: number;
+  tm_to: string;
 
-@Prop()
-vehicle: [string];
+  @Prop()
+  dsc: string;
 
-@Prop({ type: RgtrCarSchema })
-vehicles: RgtrCar;
+  @Prop({ type: Number, required: false }) // Make reqStat nullable
+  reqStat: number | null;
+
+  @Prop({ type: [String], required: false }) // Make vehicle nullable
+  vehicle: string[] | null;
 
 }
 

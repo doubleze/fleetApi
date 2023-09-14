@@ -5,6 +5,7 @@ import { RegistorModule } from './registor/registor.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ReservationModule } from './reservation/reservation.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { ReservationModule } from './reservation/reservation.module';
     }),
     MongooseModule.forRoot(process.env.cnnDB_URL),
     RegistorModule,
-    ReservationModule],
+    ReservationModule,
+    UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })

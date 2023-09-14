@@ -17,12 +17,20 @@ export class RgtrCar{
     model: string;
 
     @Prop()
-    capacity: number;
+    capacity: number; 
+    
+    @Prop()
+    dirverPhone:string;
 
     @Prop()
     carStat: number;
-    // defualt: 1;
     
+    @Prop()
+    tm_frm: string;
+  
+    @Prop()
+    tm_to: string;
+
 
 }
 
