@@ -31,7 +31,7 @@ export class UsersController {
     @Body()
     usrInf: logInDto,
   ) {
-    return this.usersService.signIns(usrInf);
+    return this.usersService.signIns_(usrInf);
   }
 
   @Put('update/:_id')

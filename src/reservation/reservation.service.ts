@@ -16,7 +16,7 @@ export class ReservationService {
   ) {}
 
   async creatRsv(rsvinf: Rservations): Promise<Rservations> {
-    if(!rsvinf.reqStat ){
+    if (!rsvinf.reqStat) {
       rsvinf.reqStat = 0;
     }
     const nwRsv = await this.rservationsModel.create(rsvinf);
@@ -26,9 +26,50 @@ export class ReservationService {
   async findAllRsv(): Promise<Rservations[]> {
     const allRsv = await this.rservationsModel.find();
     if (!allRsv) {
-      throw new NotFoundException('No Reservation Information is found');
+      return [];
     }
     return allRsv;
+  }
+
+
+  async findAllRsvsByStut(stat: string): Promise<Rservations[]> {
+    const allRsv = await this.rservationsModel.find({reqStat: stat});
+    if (!allRsv) {
+      return [];
+    }
+    return allRsv;
+  }
+
+  async findAllRsvByUser(user: string, stat: string): Promise<Rservations[]> {
+    try {
+      
+      const allRsv = await this.rservationsModel.find({ userName: user, reqStat: stat })
+        .exec();
+      
+      if (!allRsv) {
+        return [];
+      }
+      return allRsv;
+    } catch (error) {
+      throw new NotFoundException('Rerservation Information fined error !');
+    }
+  }
+
+  async findAllRsvByDep(
+    departmnt: string,
+  ): Promise<Rservations[]> {
+    try {
+     
+       const allRsv = await this.rservationsModel.find({ depmnt: departmnt }).exec();
+     
+
+      if (!allRsv) {
+        return [];
+      }
+      return allRsv;
+    } catch (error) {
+      throw new NotFoundException('Rerservation Information fined error !');
+    }
   }
 
   async findById(_id: string): Promise<Rservations> {
@@ -45,6 +86,13 @@ export class ReservationService {
   }
 
   async updatRsv(_id: string, rsvinf: Rservations): Promise<Rservations> {
+    return await this.rservationsModel.findByIdAndUpdate(_id, rsvinf, {
+      new: true,
+      runValidators: true,
+    });
+  }
+
+  async updatStatus(_id: string, rsvinf: Rservations): Promise<Rservations> {
     return await this.rservationsModel.findByIdAndUpdate(_id, rsvinf, {
       new: true,
       runValidators: true,

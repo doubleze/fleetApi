@@ -28,12 +28,15 @@ export class Rservations {
 
   @Prop()
   dsc: string;
+  
+  @Prop()
+  userName: string;
 
-  @Prop({ type: Number, required: false }) // Make reqStat nullable
+  @Prop({ type: Number, required: false }) 
   reqStat: number | null;
 
-  @Prop({ type: [String], required: false }) // Make vehicle nullable
-  vehicle: string[] | null;
+  @Prop({ type: String, required: false }) 
+  vehicle: string | null;
 
 }
 

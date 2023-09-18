@@ -87,7 +87,7 @@ export class UsersService {
   async signIns(usrInf: logInDto) {
 
     const {userName, passWord } = usrInf;
-    console.log(` user name ${userName}  and password ${passWord}`);
+    // console.log(` user name ${userName}  and password ${passWord}`);
     
     try {
       
@@ -101,6 +101,37 @@ export class UsersService {
       if (match) {
         // Passwords match, you can consider the user authenticated
         return {userRole: usrS.userRole}
+      } else {
+        throw new NotFoundException('Invalid Password');
+      }
+    
+    } catch (error) {
+      throw new NotFoundException('User Information Not Found catched !');
+    }
+  }
+
+
+  async signIns_(usrInf: logInDto) {
+
+    const {userName, passWord } = usrInf;
+    // console.log(` user name ${userName}  and password ${passWord}`);
+    
+    try {
+      
+      const usrS =  await this.userModel.findOne({ userName: userName }).exec();    
+      if (!usrS) {
+        throw new NotFoundException('User Information Not Found !');
+      }
+  
+      const match = await bcrypt.compare(passWord, usrS.passWord);
+      console.log(`Check matched = ${match}`);
+      if (match) {
+        // Passwords match, you can consider the user authenticated
+        return {userRole: usrS.userRole,
+          userName: userName,
+          nm: usrS.firstName + " " + usrS.lastName,
+          departmnt: usrS.departmnt
+        }
       } else {
         throw new NotFoundException('Invalid Password');
       }

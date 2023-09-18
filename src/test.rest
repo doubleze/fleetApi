@@ -54,20 +54,35 @@ POST http://localhost:5000/reservation/Nrs
 content-type: application/json
 
 {
-     "dts": "12-09-2023",
-    "requster": "KKyert YGbf",
-     "depmnt": "Media",
+     "dts": "18-09-2023",
+    "requster": "SBVMNDFB FTEBDgvnD",
+     "depmnt": "Security",
      "frm": "New shop",
      "_to": "Head office",
      "tm_frm": "7:00",
      "tm_to": "9:30",
-     "dsc": "Training"     
+     "dsc": "Training",
+     "userName": "user1" 
 }
 
 
 ###
 
-GET  http://localhost:5000/reservation
+GET  http://localhost:5000/reservation/
+
+###
+
+GET  http://localhost:5000/reservation/byStat/0
+
+###
+
+
+GET  http://localhost:5000/reservation/byUser/user1/3
+
+###
+
+
+GET  http://localhost:5000/reservation/byDepr/Information Technology
 
 ###
 
@@ -75,7 +90,7 @@ GET  http://localhost:5000/reservation/byId/64f8293664fad0ea5b63fdb1
 
 ###
 
-Put http://localhost:5000/reservation/update/64e2c1291dbc3e59ba6b5e7b
+Put http://localhost:5000/reservation/update/6507a216678e632c9d8c9bf4
 content-type: application/json
 
 {
@@ -86,8 +101,19 @@ content-type: application/json
      "_to": "New Shop",
      "dsc": "Promoting New Shop",
      "reqStat": 1,
-     "vehicle": ["64de0700ef5a69b3ace726b9", "64de0710ef5a69b3ace726c9"]
+     
 }
+
+###
+
+Put http://localhost:5000/reservation/uptStus/6507a216678e632c9d8c9bf4
+content-type: application/json
+
+{
+     "reqStat": 0
+}
+
+###
 
 ### 
         ### END Resvation
@@ -98,13 +124,13 @@ POST http://localhost:5000/users/sigUp
 content-type: application/json
 
 {
-    "firstName": "Lannister",
-    "lastName": "Cersei",
-    "departmnt": "Information Technology",
-    "email": "cerseilannister@gmail.com",
-    "userName": "Lannister34",
-    "passWord": "fhsehsgh346457", 
-    "userRole": 8
+    "firstName": "Kteyet",
+    "lastName": "Ykuttr",
+    "departmnt": "Security",
+    "email": "KteyetYkuttr@gmail.com",
+    "userName": "sctDep",
+    "passWord": "sctDep", 
+    "userRole": 2
 }
 
 
@@ -126,22 +152,22 @@ content-type: application/json
 
 {
     
-    "userName": "user1",
-    "passWord": "user1"
+    "userName": "user2",
+    "passWord": "user2"
     
 }
 
 ###
 
-Put http://localhost:5000/users/update/64ef3a8c7f8729e2d4ec4e52
+Put http://localhost:5000/users/update/64ef05cf7f8729e2d4eba684
 content-type: application/json
 
 {
-    "firstName": "SBVMNDFB",
-    "lastName": "FTEBDgvnD",
-    "departmnt": "Security",
-    "email": "dgxdgdfsg@gmail.com",
-    "userName": "user1",
-    "passWord": "user1", 
-    "userRole": 1
+    "firstName": "AbcEF",
+    "lastName": "Abcd",
+    "departmnt": "Information Technology",
+    "email": "stevegoodmane@gmail.com",
+    "userName": "user3",
+    "passWord": "user3", 
+    "userRole": 2
 }

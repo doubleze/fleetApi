@@ -24,9 +24,13 @@ export class RsvDto {
   readonly tm_to: string;
   @IsString()
   @IsNotEmpty()
-  readonly dsc: string;
+  readonly dsc: string; //
+  @IsString()
+  @IsNotEmpty()
+  userName: string;
+
   
   readonly reqStat: number;
   
-  readonly vehicle: [string];
+  readonly vehicle: string;
 }
