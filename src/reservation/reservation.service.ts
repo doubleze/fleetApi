@@ -40,6 +40,21 @@ export class ReservationService {
     return allRsv;
   }
 
+  async findAllRsvByUserNm(user: string): Promise<Rservations[]> {
+    try {
+      
+      const allRsv = await this.rservationsModel.find({ userName: user })
+        .exec();
+      
+      if (!allRsv) {
+        return [];
+      }
+      return allRsv;
+    } catch (error) {
+      throw new NotFoundException('Rerservation Information fined error !');
+    }
+  }
+
   async findAllRsvByUser(user: string, stat: string): Promise<Rservations[]> {
     try {
       

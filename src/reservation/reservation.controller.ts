@@ -53,6 +53,14 @@ export class ReservationController {
     return this.rsvService.findAllRsvByUser(Usr, stat);
   }
 
+  @Get('byUser/:Usr')
+  async getAllRsvUsrNm(
+    @Param('Usr')
+    Usr: string
+  ): Promise<Rservations[]> {
+    return this.rsvService.findAllRsvByUserNm(Usr);
+  }
+
   @Get('byDepr/:departmnt')
   async getAllRsvDprt(
     @Param('departmnt')

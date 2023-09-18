@@ -40,4 +40,7 @@ export class Rservations {
 
 }
 
-export const RservationsSchema = SchemaFactory.createForClass(Rservations)
+// export const RservationsSchema = SchemaFactory.createForClass(Rservations)
+
+export type RservationDocument = Rservations & Document;
+export const RservationsSchema = SchemaFactory.createForClass(Rservations);

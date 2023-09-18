@@ -72,10 +72,13 @@ GET  http://localhost:5000/reservation/
 
 ###
 
-GET  http://localhost:5000/reservation/byStat/0
+GET  http://localhost:5000/reservation/byStat/2
 
 ###
 
+GET  http://localhost:5000/reservation/byUser/user1
+
+###
 
 GET  http://localhost:5000/reservation/byUser/user1/3
 
