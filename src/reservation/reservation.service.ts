@@ -28,12 +28,43 @@ export class ReservationService {
     if (!allRsv) {
       return [];
     }
-    return allRsv;
+    // Parse the date strings into Date objects and then sort
+    return allRsv.sort((a, b) => {
+      const dateA = new Date(a.dts);
+      const dateB = new Date(b.dts);
+
+      // Sort in ascending order, modify the comparison logic as needed
+      return dateA.getTime() - dateB.getTime();
+    });
   }
 
+  async findAllRsvG(): Promise<{ [key: string]: Rservations[] }> {
+    const allRsv = await this.rservationsModel.find();
+    if (!allRsv) {
+      return {};
+    }
+  
+    // Use reduce to group reservations by reqStat
+    const groupedReservations = allRsv.reduce((result, reservation) => {
+      const reqStat = reservation.reqStat;
+  
+      // Check if the reqStat is already a property in the result object
+      if (!result[reqStat]) {
+        result[reqStat] = [];
+      }
+  
+      // Add the reservation to the corresponding reqStat group
+      result[reqStat].push(reservation);
+  
+      return result;
+    }, {});
+  
+    return groupedReservations;
+  }
+  
 
   async findAllRsvsByStut(stat: string): Promise<Rservations[]> {
-    const allRsv = await this.rservationsModel.find({reqStat: stat});
+    const allRsv = await this.rservationsModel.find({ reqStat: stat });
     if (!allRsv) {
       return [];
     }
@@ -42,10 +73,10 @@ export class ReservationService {
 
   async findAllRsvByUserNm(user: string): Promise<Rservations[]> {
     try {
-      
-      const allRsv = await this.rservationsModel.find({ userName: user })
+      const allRsv = await this.rservationsModel
+        .find({ userName: user })
         .exec();
-      
+
       if (!allRsv) {
         return [];
       }
@@ -57,10 +88,10 @@ export class ReservationService {
 
   async findAllRsvByUser(user: string, stat: string): Promise<Rservations[]> {
     try {
-      
-      const allRsv = await this.rservationsModel.find({ userName: user, reqStat: stat })
+      const allRsv = await this.rservationsModel
+        .find({ userName: user, reqStat: stat })
         .exec();
-      
+
       if (!allRsv) {
         return [];
       }
@@ -70,13 +101,11 @@ export class ReservationService {
     }
   }
 
-  async findAllRsvByDep(
-    departmnt: string,
-  ): Promise<Rservations[]> {
+  async findAllRsvByDep(departmnt: string): Promise<Rservations[]> {
     try {
-     
-       const allRsv = await this.rservationsModel.find({ depmnt: departmnt }).exec();
-     
+      const allRsv = await this.rservationsModel
+        .find({ depmnt: departmnt })
+        .exec();
 
       if (!allRsv) {
         return [];

@@ -32,7 +32,12 @@ export class ReservationController {
 
   @Get()
   async getAllRsv(): Promise<Rservations[]> {
-    return this.rsvService.findAllRsv();
+    return this.rsvService.findAllRsv(); //findAllRsvG
+  }
+
+  @Get('/grouped')
+  async getAllRsvGst(): Promise<{ [key: string]: Rservations[] }> {
+    return this.rsvService.findAllRsvG(); 
   }
 
   @Get('byStat/:stat')
